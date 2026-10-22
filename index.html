@@ -5,23 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kami, Friday is handled</title>
 <meta name="description" content="Friday night in Muscatine. Here's the plan.">
-<meta name="theme-color" content="#14110f">
+<meta name="theme-color" content="#140d14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,600;9..144,700,50&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#14110f;
-    --bg-2:#1c1815;
-    --card:#211c18;
-    --card-hi:#2a241f;
-    --line:#352e28;
-    --ink:#f3ebe1;
-    --ink-2:#b8aa9b;
-    --ink-3:#7f7266;
-    --amber:#e8a24b;
-    --amber-2:#f4c37c;
-    --amber-ink:#1a1206;
+    /* October: pink tourmaline on a deep plum, with an opal shimmer up top */
+    --bg:#140d14;
+    --bg-2:#1b121c;
+    --card:#211623;
+    --card-hi:#2b1c2e;
+    --line:#3a2a3d;
+    --ink:#f6ecf3;
+    --ink-2:#c3adbd;
+    --ink-3:#86707f;
+    --amber:#e8569a;
+    --amber-2:#f49cc6;
+    --amber-ink:#2a0818;
+    --blue:#3fc1ff;
+    --blue-2:#8fe0ff;
     --radius:20px;
   }
   *{box-sizing:border-box}
@@ -33,14 +36,16 @@
     min-height:100dvh;
     padding-bottom:calc(120px + env(safe-area-inset-bottom));
     background:
-      radial-gradient(900px 500px at 50% -120px, rgba(232,162,75,.16), transparent 60%),
+      radial-gradient(700px 420px at 30% -140px, rgba(232,86,154,.20), transparent 60%),
+      radial-gradient(600px 380px at 75% -100px, rgba(120,200,220,.14), transparent 60%),
+      radial-gradient(500px 320px at 55% 40px, rgba(190,160,255,.10), transparent 60%),
       var(--bg);
   }
   .wrap{max-width:560px;margin:0 auto;padding:28px 16px 0}
 
   .eyebrow{
     font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--amber);font-weight:600;margin:0 0 10px;
+    color:var(--blue);font-weight:600;margin:0 0 10px;
   }
   h1{
     font-family:Fraunces,Georgia,serif;font-weight:600;
@@ -49,12 +54,12 @@
   }
   h1 em{font-style:italic;font-weight:400;color:var(--amber-2)}
   .lede{color:var(--ink-2);margin:0 0 26px;font-size:17px}
-  .lede b{color:var(--ink);font-weight:600}
+  .lede b{color:var(--blue-2);font-weight:600}
 
   .card{
     position:relative;background:var(--card-hi);border:1px solid var(--amber);
     border-radius:var(--radius);padding:18px 18px 16px;
-    box-shadow:0 0 0 1px var(--amber) inset;
+    box-shadow:0 0 0 1px var(--amber) inset, 0 0 28px rgba(63,193,255,.22);
   }
   .card-top{display:flex;align-items:flex-start;gap:12px}
   .badge{
@@ -72,13 +77,13 @@
     font-size:12.5px;font-weight:500;color:var(--ink-2);
     background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:5px 10px;
   }
-  .pill.hot{color:var(--amber-2);border-color:rgba(232,162,75,.35)}
+  .pill.hot{color:var(--blue-2);border-color:rgba(63,193,255,.45);background:rgba(63,193,255,.08)}
   .plan{
     margin:14px 0 0;padding:0;list-style:none;
     display:grid;grid-template-columns:52px 1fr;row-gap:12px;column-gap:10px;
-    border-top:1px dashed var(--line);padding-top:14px;
+    border-top:1px dashed rgba(63,193,255,.35);padding-top:14px;
   }
-  .plan .t{color:var(--ink-3);font-size:13px;font-variant-numeric:tabular-nums;padding-top:2px}
+  .plan .t{color:var(--blue);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;padding-top:2px}
   .plan .w{font-size:15px}
   .plan .w b{font-weight:600;color:var(--ink)}
   .plan .w span{display:block;color:var(--ink-2);font-size:13.5px;margin-top:1px}
@@ -88,7 +93,7 @@
   .bar{
     position:fixed;left:0;right:0;bottom:0;z-index:5;
     padding:12px 16px calc(14px + env(safe-area-inset-bottom));
-    background:linear-gradient(to top, rgba(20,17,15,.98) 60%, rgba(20,17,15,0));
+    background:linear-gradient(to top, rgba(20,13,20,.98) 60%, rgba(20,13,20,0));
   }
   .bar-in{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
   .btn{
@@ -99,7 +104,7 @@
   }
   .btn:active{transform:scale(.99)}
   .btn-amber{background:var(--amber);color:var(--amber-ink)}
-  .btn-ghost{background:transparent;color:var(--ink-2);padding:10px;font-size:14px;font-weight:500}
+  .btn-ghost{background:transparent;color:var(--blue-2);padding:10px;font-size:14px;font-weight:500}
   .hint{text-align:center;color:var(--ink-3);font-size:13px;margin:0}
 
   .done{display:none}
