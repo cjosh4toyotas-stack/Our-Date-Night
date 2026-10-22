@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kami, Friday is handled</title>
+<meta name="description" content="Friday night in Muscatine. Here's the plan.">
+<meta name="theme-color" content="#14110f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,600;9..144,700,50&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14110f;
+    --bg-2:#1c1815;
+    --card:#211c18;
+    --card-hi:#2a241f;
+    --line:#352e28;
+    --ink:#f3ebe1;
+    --ink-2:#b8aa9b;
+    --ink-3:#7f7266;
+    --amber:#e8a24b;
+    --amber-2:#f4c37c;
+    --amber-ink:#1a1206;
+    --radius:20px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink)}
+  body{
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:16px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    min-height:100dvh;
+    padding-bottom:calc(120px + env(safe-area-inset-bottom));
+    background:
+      radial-gradient(900px 500px at 50% -120px, rgba(232,162,75,.16), transparent 60%),
+      var(--bg);
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:28px 16px 0}
+
+  .eyebrow{
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--amber);font-weight:600;margin:0 0 10px;
+  }
+  h1{
+    font-family:Fraunces,Georgia,serif;font-weight:600;
+    font-size:clamp(36px,9vw,48px);line-height:1.02;letter-spacing:-.02em;
+    margin:0 0 14px;
+  }
+  h1 em{font-style:italic;font-weight:400;color:var(--amber-2)}
+  .lede{color:var(--ink-2);margin:0 0 26px;font-size:17px}
+  .lede b{color:var(--ink);font-weight:600}
+
+  .card{
+    position:relative;background:var(--card-hi);border:1px solid var(--amber);
+    border-radius:var(--radius);padding:18px 18px 16px;
+    box-shadow:0 0 0 1px var(--amber) inset;
+  }
+  .card-top{display:flex;align-items:flex-start;gap:12px}
+  .badge{
+    flex:0 0 auto;width:36px;height:36px;border-radius:12px;
+    display:grid;place-items:center;font-size:18px;
+    background:var(--amber);color:var(--amber-ink);border:1px solid var(--amber);
+  }
+  .card h2{
+    font-family:Fraunces,Georgia,serif;font-weight:600;font-size:24px;line-height:1.1;
+    margin:4px 0 2px;letter-spacing:-.01em;
+  }
+  .tag{color:var(--ink-2);font-size:14px;margin:0}
+  .meta{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
+  .pill{
+    font-size:12.5px;font-weight:500;color:var(--ink-2);
+    background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:5px 10px;
+  }
+  .pill.hot{color:var(--amber-2);border-color:rgba(232,162,75,.35)}
+  .plan{
+    margin:14px 0 0;padding:0;list-style:none;
+    display:grid;grid-template-columns:52px 1fr;row-gap:12px;column-gap:10px;
+    border-top:1px dashed var(--line);padding-top:14px;
+  }
+  .plan .t{color:var(--ink-3);font-size:13px;font-variant-numeric:tabular-nums;padding-top:2px}
+  .plan .w{font-size:15px}
+  .plan .w b{font-weight:600;color:var(--ink)}
+  .plan .w span{display:block;color:var(--ink-2);font-size:13.5px;margin-top:1px}
+
+  .fine{color:var(--ink-3);font-size:13px;margin:22px 4px 0;line-height:1.55}
+
+  .bar{
+    position:fixed;left:0;right:0;bottom:0;z-index:5;
+    padding:12px 16px calc(14px + env(safe-area-inset-bottom));
+    background:linear-gradient(to top, rgba(20,17,15,.98) 60%, rgba(20,17,15,0));
+  }
+  .bar-in{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+  .btn{
+    appearance:none;border:0;width:100%;border-radius:16px;padding:16px 18px;
+    font:inherit;font-weight:600;font-size:17px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:opacity .2s,transform .12s;
+  }
+  .btn:active{transform:scale(.99)}
+  .btn-amber{background:var(--amber);color:var(--amber-ink)}
+  .btn-ghost{background:transparent;color:var(--ink-2);padding:10px;font-size:14px;font-weight:500}
+  .hint{text-align:center;color:var(--ink-3);font-size:13px;margin:0}
+
+  .done{display:none}
+  body.locked .choose{display:none}
+  body.locked .done{display:block}
+  .done-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px;margin-top:6px;
+  }
+  .done-card h2{font-family:Fraunces,serif;font-weight:600;font-size:28px;margin:0 0 6px;letter-spacing:-.01em}
+  .done-card p{color:var(--ink-2);margin:0 0 16px}
+  .msg{
+    background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:14px 16px;
+    font-size:15px;color:var(--ink);white-space:pre-wrap;margin:0 0 14px;
+  }
+  .toast{
+    position:fixed;left:50%;bottom:calc(140px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(10px);
+    background:var(--ink);color:var(--bg);font-size:14px;font-weight:600;
+    padding:10px 14px;border-radius:999px;opacity:0;transition:all .25s;pointer-events:none;
+  }
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="choose">
+    <p class="eyebrow">Friday · Oct 23</p>
+    <h1 id="title">Kami, Friday is <em>handled.</em></h1>
+    <p class="lede">I'm at your place at <b>6:30</b>. From there, this is the night.</p>
+
+    <article class="card">
+      <div class="card-top">
+        <div class="badge">★</div>
+        <div>
+          <h2>Muscatine, on the river</h2>
+          <p class="tag">Dinner with the bridge lit up, then a drink by the water.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <span class="pill hot">Downtown, all on foot</span>
+        <span class="pill">Dinner · River walk · Cocktails</span>
+      </div>
+      <ul class="plan">
+        <li class="t">6:30</li><li class="w"><b>Your place</b><span>I'm there. We're out the door by 6:45.</span></li>
+        <li class="t">7:30</li><li class="w"><b>Maxwell's on the River</b><span>Dinner at the Merrill, 119 W Mississippi Dr. Window seat, bridge lit up over the water.</span></li>
+        <li class="t">9:00</li><li class="w"><b>Riverfront walk</b><span>One block along the Mississippi. Bring a jacket.</span></li>
+        <li class="t">9:20</li><li class="w"><b>Pr%f Social</b><span>Cocktails at 208 W 2nd St. River patio, and a band if we're lucky.</span></li>
+        <li class="t">10:30</li><li class="w"><b>Back to yours</b><span>Night's not over.</span></li>
+      </ul>
+    </article>
+
+    <p class="fine">Times are easy to move. If there's somewhere in Muscatine you've been wanting to try, say so and I'll swap it in.</p>
+  </section>
+
+  <section class="done">
+    <p class="eyebrow">Locked in</p>
+    <div class="done-card">
+      <h2>Friday it is.</h2>
+      <p>Send this to Josh and he'll take it from there.</p>
+      <div class="msg" id="done-msg"></div>
+      <button class="btn btn-amber" id="send">Text it to Josh</button>
+      <button class="btn btn-ghost" id="undo">Let me look again</button>
+    </div>
+  </section>
+
+</div>
+
+<div class="bar choose">
+  <div class="bar-in">
+    <button class="btn btn-amber" id="lock">I'm in</button>
+    <p class="hint">Tap it and I'll book the table.</p>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied. Paste it to Josh.</div>
+
+<script>
+  // Set this to the number she should text. Digits only, e.g. "3195551234".
+  // Leave blank and the button copies the message instead of opening Messages.
+  var JOSH_PHONE = "";
+
+  var params = new URLSearchParams(location.search);
+  var name = (params.get("name") || "Kami").trim();
+  if (name) {
+    document.getElementById("title").innerHTML = name + ", Friday is <em>handled.</em>";
+    document.title = name + ", Friday is handled";
+  }
+
+  var msgText = "I'm in. Friday, 6:30. See you then.";
+  document.getElementById("lock").addEventListener("click", function(){
+    document.getElementById("done-msg").textContent = msgText;
+    document.body.classList.add("locked");
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+  document.getElementById("undo").addEventListener("click", function(){
+    document.body.classList.remove("locked");
+  });
+
+  function toast(t){
+    var el = document.getElementById("toast");
+    el.textContent = t; el.classList.add("on");
+    setTimeout(function(){ el.classList.remove("on"); }, 1800);
+  }
+  document.getElementById("send").addEventListener("click", function(){
+    if (JOSH_PHONE) {
+      var sep = /iPhone|iPad|Macintosh/.test(navigator.userAgent) ? "&" : "?";
+      location.href = "sms:" + JOSH_PHONE + sep + "body=" + encodeURIComponent(msgText);
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(msgText).then(function(){ toast("Copied. Paste it to Josh."); }, function(){ toast("Long-press the message to copy it."); });
+    } else {
+      toast("Long-press the message to copy it.");
+    }
+  });
+</script>
+</body>
+</html>
